@@ -1,18 +1,48 @@
 
 function determineBonus(employees) {
   //Write a loop to calculate each employee's bouns
-
+  let bonuses = [];
   //For every 3 years the person has been employeed, increase their
   //salary by 1 %, but do not increase anyones over 5 %
 
+  for (let i = 0; i < employees.length; i++) {
+
+    let today = new Date;
+    let thisYear = today.getFullYear();
+    let empYear = employees[i].hireDate.getFullYear();
+    let yearsWorked = thisYear - empYear;
+    let bonus = null;
+    let threeYearsPassed = yearsWorked / 3;
+
+    if (yearsWorked < 15) {
+      bonus = employees[i].salary * (Math.floor(threeYearsPassed) * .01);
+      bonus = bonus.toFixed(2);
+    } else {
+      bonus = employees[i].salary * .05;
+      bonus = bonus.toFixed(2);
+    }
+    bonuses.push(Number(bonus));
+  }
+  
+  console.log(bonuses);
+  return bonuses;
 
 }
 
-function determine401kAmount(employees, percent) {
+  function determine401kAmount(employees, percent) {
   //Calculate the amount reduced from each check to put into
   //the employee's 401K it should be the <percent> over the
   //course of the year
-}
+  let retirements = [];
+    for (let i = 0; i < employees.length; i++) {
+      let retirement = (employees[i].salary * (percent/100)) / 12;
+      retirement = retirement.toFixed(2);
+      retirements.push(Number(retirement));
+    }
+  console.log(retirements);
+  return retirements;
+  }
+
 
 function main() {
   //Here's a sample piece of data
